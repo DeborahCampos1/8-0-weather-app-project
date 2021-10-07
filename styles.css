@@ -1,14 +1,21 @@
+/* #main{
+    display: grid;
+    
+} */
+
 #content{
     display: grid;
     grid-template-areas: 
-    "current current previous"
-    "forcast forcast previous";
+    ". header header header ."
+    ". current current previous ."
+    ". forcast forcast previous .";
     grid-gap: 5px;
     margin: 0 auto;
 }
 
 
 #header{
+    display: grid;
     text-align: center;
     grid-area: header;
     border: 2px solid black;
@@ -16,6 +23,7 @@
     margin: 10px;
     background-color: cadetblue;
 }
+
 #current-location{
     border: 2px solid black;
     margin: 10px;
@@ -28,7 +36,7 @@
     margin: 10px;
     padding: 15px;
     grid-area: previous;
-    text-align: center;
+    text-align: left;
 }
 #forcast{
     display:grid;

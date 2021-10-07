@@ -10,23 +10,68 @@
 </head>
 <body>
     <div id= "main">
-        <div id ="header">
-            <h1>Weather App</h1>
-            <form id="pick-location">
-                <div id="error-message"></div>
-                <label>Pick a location</label>
-                    <input 
-                        id="location"
-                        name="location"
-                        type="text"/>
-                    <input type="submit" value="Get Weather"/>
-            </form>
+        <div id = "content">
+            <div id ="header">
+                <h1>Weather App</h1>
+                <form id="pick-location">
+                    <div id="error-message"></div>
+                    <label>Pick a location</label>
+                        <input 
+                            id="location"
+                            name="location"
+                            type="text"/>
+                        <input type="submit" value="Get Weather"/>
+                </form>
+            </div>    
+            <div id ="current-location" class="display"> 
+                <h2>Melborne</h2>
+                <div><strong>Area: </strong><span id="area">Toronto</span></div>
+                <br>
+                <div><strong>Region: </strong><span id="region"> Ontorio</span></div>
+                <br>
+                <div><strong>Country: </strong><span id="country">Canada</span></div>
+                <br>
+                <div><strong>Currently: </strong><span id="current">Feels like 65F</span></div>
+                <br>
+            </div>
+            <div id="previous-searches" class="history"> 
+                <h5>Previous Searches</h5>
+                <ul>
+                    <li></li>
+                </ul>
+            </div>
+            <div id= "forcast"> 
+                <div id = "today">
+                    <h3>Today</h3>
+                    <div><strong>Average Temp: </strong><span>64F</span></div>
+                    <br>
+                    <div><strong>Max Temp: </strong><span>68F</span></div>
+                    <br>
+                    <div><strong>Min Temp: </strong><span>62F</span></div>
+                    <br>
+                    
+                </div>
+                 <div id ="tomorrow">
+                    <h3>Tomorrow</h3>
+                    <div><strong>Average Temp: </strong><span>64F</span></div>
+                    <br>
+                    <div><strong>Max Temp: </strong><span>68F</span></div>
+                    <br>
+                    <div><strong>Min Temp: </strong><span>52F</span></div>
+                    <br>
+                    
+                 </div>
+                 <div id="day-after">
+                    <h3>Day After Tomorrow</h3>
+                    <div><strong>Average Temp: </strong><span>64F</span></div>
+                    <br>
+                    <div><strong>Max Temp: </strong><span>68F</span></div>
+                    <br>
+                    <div><strong>Min Temp: </strong><span>62F</span></div>
+                    <br>
+                 </div>
+            </div>
         </div>
-
-
-        <div id = "current-location" class="display"> Melborne 75 F</div>
-        <div id="previous-searches" class="history"> Previous Searches</div>
-        <div id= "forcast"> Today Tomorrow The next day</div>
     </div>
 </body>
 </html>
