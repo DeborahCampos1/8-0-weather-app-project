@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <script defer src= script.js></script>
+    <link rel ="stylesheet" href = "styles.css">
+</head>
+<body>
+    <div id= "main">
+        <div id ="header">
+            <h1>Weather App</h1>
+            <form id="pick-location">
+                <div id="error-message"></div>
+                <label>Pick a location</label>
+                    <input 
+                        id="location"
+                        name="location"
+                        type="text"/>
+                    <input type="submit" value="Get Weather"/>
+            </form>
+        </div>
+
+
+        <div id = "current-location" class="display"> Melborne 75 F</div>
+        <div id="previous-searches" class="history"> Previous Searches</div>
+        <div id= "forcast"> Today Tomorrow The next day</div>
+    </div>
+</body>
+</html>
