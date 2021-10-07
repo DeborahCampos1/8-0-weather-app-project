@@ -1,0 +1,51 @@
+#content{
+    display: grid;
+    grid-template-areas: 
+    "current current previous"
+    "forcast forcast previous";
+    grid-gap: 5px;
+    margin: 0 auto;
+}
+
+
+#header{
+    text-align: center;
+    grid-area: header;
+    border: 2px solid black;
+    padding: 10px 0px 40px 0px;
+    margin: 10px;
+    background-color: cadetblue;
+}
+#current-location{
+    border: 2px solid black;
+    margin: 10px;
+    padding:10px;
+    grid-area: current;
+    text-align: center;
+}
+#previous-searches{
+    border: 2px solid black;
+    margin: 10px;
+    padding: 15px;
+    grid-area: previous;
+    text-align: center;
+}
+#forcast{
+    display:grid;
+    grid-template-areas: 
+    "today tomorrow dayafter";
+    border: 2px solid black;
+    margin: 10px;
+    padding: 15px;
+    grid-area: forcast;
+    text-align: center;
+}
+#today{
+    grid-area: today;
+}
+#tomorrow{
+    grid-area: tomorrow;
+}
+#day-after{
+    grid-area: dayafter;
+}
