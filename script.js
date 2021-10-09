@@ -1,36 +1,60 @@
-fetch("https://wttr.in/" + "NewYork" + "?format=j1")
-    .then((res)=> {
-        return res.json();
-    }).then((data)=> {
-        let current = data.current_condition;
-        let feelsLike = current[0].FeelsLikeF;
+let form = document.querySelector("#pick-location")
 
-        let dateTime = current[0].localObsDateTime;
+form.addEventListener("submit", (e)=>{
+    e.preventDefault();
 
-        let area = data.nearest_area;// grab region country area from here 
-        let forcast = data.weather;
+    let chosenLocation = e.target["location"].value;
+    let errorMsg = document.querySelector("#error-message")
 
-        //let todayAvg = forcast[0].avgtempF
-        //let todayMax = forcast[0].maxtempF
-        //let todayMin = forcast[0].mintempF
+if(!chosenLocation){
+    errorMsg.textContent = "Please enter a location"
+    
+} else {
 
-        let region = area[0].region[0].value;
-        let country = area[0].country[0].value
-        let currentArea = area[0].areaName[0].value
+    errorMsg.textContent = "";
+   
+    fetch(`https://wttr.in/${chosenLocation}?format=j1`)
+        .then((res)=> {
+            return res.json();
+        }).then((data)=> {
 
-        console.log(forcast)
-        
+            let area = data.nearest_area;// grab region & country from here 
+            let forcast = data.weather;
+            //console.log(data)
 
-        //console.log(region)
-        //console.log(country)
-        //console.log(currentArea)
+            let current = data.current_condition;
 
-        //console.log(feelsLike);
-        //console.log(dateTime);
+            let feelsLike = current[0].FeelsLikeF;
+            let region = chosenLocation;
+            console.log(region)
+            let country = area[0].country[0].value
+            let currentArea = area[0].areaName[0].value // this should match input value of form 
 
-    }).catch((err)=>{
-    console.log(err);
+
+            let dateTime = current[0].localObsDateTime;
+
+
+            let todayAvg = forcast[0].avgtempF
+            let todayMax = forcast[0].maxtempF
+            let todayMin = forcast[0].mintempF
+            console.log(todayMin)
+
+            let tomorrowAvg = forcast[1].avgtempF
+            let tomorrowMax = forcast[1].maxtempF
+            let tomorrowMin = forcast[1].mintempF
+            console.log(tomorrowAvg)
+
+            let dayAfterAvg = forcast[2].avgtempF
+            let dayAfterMax = forcast[2].maxtempF
+            let dayAfterMin = forcast[2].mintempF
+            
+
+        }).catch((err)=>{
+        console.log(err);
+        });
+    }
     });
+
 
 
 // when input submitted, no-search-yet.textContent = "";

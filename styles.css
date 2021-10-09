@@ -24,6 +24,11 @@
     margin: 10px;
     background-color: cadetblue;
 }
+#error-message{
+    color: red;
+    font-weight: 700;
+    padding-top: 10px;
+}
 
 #current-location{
     border: 2px solid black;
