@@ -31,7 +31,7 @@
 }
 
 #currentLocation{
-    border: 2px solid black;
+    border: 2px solid rgb(63, 226, 218);
     margin: 10px;
     padding:10px;
     grid-area: current;
@@ -39,7 +39,7 @@
     background-color: rgb(223, 217, 217);
 }
 #previous-searches{
-    border: 2px solid black;
+   
     margin: 10px;
     padding: 15px;
     grid-area: previous;
@@ -49,11 +49,10 @@
     text-align: center;
 
 }
-#forcast{
+#forecast{
     display:grid;
     grid-template-areas: 
     "today tomorrow dayafter";
-    border: 2px solid black;
     margin: 10px;
     padding: 0px;
     grid-area: forcast;

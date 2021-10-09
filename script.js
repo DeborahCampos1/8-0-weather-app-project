@@ -65,6 +65,37 @@ form.addEventListener("submit", (e)=>{
                 <div><strong>Currently: </strong><span id="current">Feels like ${feelsLike}°F</span></div>
                 <br>`;
 
+                let forecast = document.querySelector("#forecast");
+
+                forecast.innerHTML =`
+                <div id = "today">
+                    <h3>Today</h3>
+                    <div><strong>Average Temp: </strong><span>${todayAvg} °F</span></div>
+                    <br>
+                    <div><strong>Max Temp: </strong><span> ${todayMax} °F</span></div>
+                    <br>
+                    <div><strong>Min Temp: </strong><span> ${todayMin} °F</span></div>
+                <br>      
+                </div>
+                <div id ="tomorrow">
+                    <h3>Tomorrow</h3>
+                    <div><strong>Average Temp:</strong><span> ${tomorrowAvg}°F</span></div>
+                    <br>
+                    <div><strong>Max Temp:</strong><span> ${tomorrowMax}°F</span></div>
+                    <br>
+                    <div><strong>Min Temp:</strong><span> ${tomorrowMin}°F</span></div>
+                    <br>          
+                 </div>
+                 <div id="day-after">
+                    <h3>Day After Tomorrow</h3>
+                    <div><strong>Average Temp:</strong><span> ${dayAfterAvg}°F</span></div>
+                    <br>
+                    <div><strong>Max Temp:</strong><span> ${dayAfterMax}°F</span></div>
+                    <br>
+                    <div><strong>Min Temp:</strong><span> ${dayAfterMin}°F</span></div>
+                    <br>
+                 </div>`;
+
                 previousSearch.textContent = "";
                 listItem.textContent = `${chosenLocation} - ${feelsLike}°F`
                 ul.append(listItem)
