@@ -5,7 +5,7 @@ form.addEventListener("submit", (e)=>{
 
     let chooseLocation = e.target["location"].value;
     let errorMsg = document.querySelector("#error-message")
-    let chosenLocation = chooseLocation[0].toUpperCase() + chooseLocation.slice(1)
+  
 
     if(!chooseLocation){
         errorMsg.textContent = "Please enter a location"
@@ -20,21 +20,20 @@ form.addEventListener("submit", (e)=>{
                 return res.json();
             }).then((data)=> {
 
-                let area = data.nearest_area;// grab region & country from here 
-                let forcast = data.weather;
                 console.log(data)
 
-                let current = data.current_condition;
+                let area = data.nearest_area;
 
-                let feelsLike = current[0].FeelsLikeF;
                 let region = area[0].region[0].value;
-               
                 let country = area[0].country[0].value
                 let currentArea = area[0].areaName[0].value 
 
+                let currentTemp = data.current_condition;
+                let feelsLike = currentTemp[0].FeelsLikeF;
 
-                let dateTime = current[0].localObsDateTime;
+                let dateTime = currentTemp[0].localObsDateTime;
 
+                let forcast = data.weather;
 
                 let todayAvg = forcast[0].avgtempF
                 let todayMax = forcast[0].maxtempF
@@ -54,7 +53,7 @@ form.addEventListener("submit", (e)=>{
                 
                 currentLocation.innerHTML = `
                 <div id ="current-location" class="display"> </div>
-                <h2>${chosenLocation}</h2>
+                <h2>${currentArea}</h2>
                 <div><strong>Area: </strong><span id="area">${currentArea}</span></div>
                 <br>
                 <div><strong>Region: </strong><span id="region"> ${region}</span></div>
@@ -96,14 +95,26 @@ form.addEventListener("submit", (e)=>{
                  </div>`;
 
                 previousSearch.textContent = "";
-                listItem.textContent = `${chosenLocation} - ${feelsLike}°F`
-                ul.append(listItem)
+
+                let anchor = document.createElement("a");
+                anchor.textContent = currentArea;
+            
+                listItem.textContent =  ` - ${feelsLike}°F`
+                listItem.prepend(anchor);
+                ul.append(listItem);
 
 
             }).catch((err)=>{
                 throw err;// still returns data when random info entered into form 
             });
     }
+                
+
+                // anchor.addEventListener("click", (e)=>{
+                //     e.preventDefault();
+
+                // })
+
 });
 
 
