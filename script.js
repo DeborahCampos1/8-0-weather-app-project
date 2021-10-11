@@ -1,11 +1,12 @@
 let form = document.querySelector("#pick-location")
+let searches =[];
 
 form.addEventListener("submit", (e)=>{
     e.preventDefault();
 
     let chooseLocation = e.target["location"].value;
     let errorMsg = document.querySelector("#error-message")
-  
+    
 
     if(!chooseLocation){
         errorMsg.textContent = "Please enter a location"
@@ -20,32 +21,10 @@ form.addEventListener("submit", (e)=>{
                 return res.json();
             }).then((data)=> {
 
-                console.log(data)
+                console.log(data);
 
-                let area = data.nearest_area;
+                let dateTime = data.current_condition[0].localObsDateTime;
 
-                let region = area[0].region[0].value;
-                let country = area[0].country[0].value
-                let currentArea = area[0].areaName[0].value 
-
-                let currentTemp = data.current_condition;
-                let feelsLike = currentTemp[0].FeelsLikeF;
-
-                let dateTime = currentTemp[0].localObsDateTime;
-
-                let forcast = data.weather;
-
-                let todayAvg = forcast[0].avgtempF
-                let todayMax = forcast[0].maxtempF
-                let todayMin = forcast[0].mintempF
-
-                let tomorrowAvg = forcast[1].avgtempF
-                let tomorrowMax = forcast[1].maxtempF
-                let tomorrowMin = forcast[1].mintempF
-
-                let dayAfterAvg = forcast[2].avgtempF
-                let dayAfterMax = forcast[2].maxtempF
-                let dayAfterMin = forcast[2].mintempF
 
                 let previousSearch = document.querySelector("#no-search-yet")
                 let ul = document.querySelector("#previous-list")
@@ -53,14 +32,17 @@ form.addEventListener("submit", (e)=>{
                 
                 currentLocation.innerHTML = `
                 <div id ="current-location" class="display"> </div>
-                <h2>${currentArea}</h2>
-                <div><strong>Area: </strong><span id="area">${currentArea}</span></div>
+                <h2>${data.nearest_area[0].areaName[0].value}</h2>
+                <div><strong>${dateTime}<strong><div>
                 <br>
-                <div><strong>Region: </strong><span id="region"> ${region}</span></div>
+                <div><strong>Area: </strong><span id="area">${data.nearest_area[0].areaName[0].value}</span></div>
                 <br>
-                <div><strong>Country: </strong><span id="country">${country}</span></div>
+                <div><strong>Region: </strong><span id="region"> ${data.nearest_area[0].region[0].value}</span></div>
                 <br>
-                <div><strong>Currently: </strong><span id="current">Feels like ${feelsLike}°F</span></div>
+                <div><strong>Country: </strong><span id="country">${data.nearest_area[0].country[0].value}</span></div>
+                <br>
+                <div><strong>Currently: </strong><span id="current">Feels like ${data.current_condition[0].FeelsLikeF}°F</span></div>
+                
                 <br>`;
 
                 let forecast = document.querySelector("#forecast");
@@ -68,40 +50,55 @@ form.addEventListener("submit", (e)=>{
                 forecast.innerHTML =`
                 <div id = "today">
                     <h3>Today</h3>
-                    <div><strong>Average Temp: </strong><span>${todayAvg} °F</span></div>
+                    <div><strong>Average Temp: </strong><span>${data.weather[0].avgtempF} °F</span></div>
                     <br>
-                    <div><strong>Max Temp: </strong><span> ${todayMax} °F</span></div>
+                    <div><strong>Max Temp: </strong><span> ${data.weather[0].maxtempF} °F</span></div>
                     <br>
-                    <div><strong>Min Temp: </strong><span> ${todayMin} °F</span></div>
+                    <div><strong>Min Temp: </strong><span> ${data.weather[0].mintempF} °F</span></div>
                 <br>      
                 </div>
                 <div id ="tomorrow">
                     <h3>Tomorrow</h3>
-                    <div><strong>Average Temp:</strong><span> ${tomorrowAvg}°F</span></div>
+                    <div><strong>Average Temp:</strong><span> ${data.weather[1].avgtempF}°F</span></div>
                     <br>
-                    <div><strong>Max Temp:</strong><span> ${tomorrowMax}°F</span></div>
+                    <div><strong>Max Temp:</strong><span> ${data.weather[1].maxtempF}°F</span></div>
                     <br>
-                    <div><strong>Min Temp:</strong><span> ${tomorrowMin}°F</span></div>
+                    <div><strong>Min Temp:</strong><span> ${data.weather[1].mintempF}°F</span></div>
                     <br>          
                  </div>
                  <div id="day-after">
                     <h3>Day After Tomorrow</h3>
-                    <div><strong>Average Temp:</strong><span> ${dayAfterAvg}°F</span></div>
+                    <div><strong>Average Temp:</strong><span> ${data.weather[2].avgtempF}°F</span></div>
                     <br>
-                    <div><strong>Max Temp:</strong><span> ${dayAfterMax}°F</span></div>
+                    <div><strong>Max Temp:</strong><span> ${data.weather[2].maxtempF}°F</span></div>
                     <br>
-                    <div><strong>Min Temp:</strong><span> ${dayAfterMin}°F</span></div>
+                    <div><strong>Min Temp:</strong><span> ${data.weather[2].mintempF}°F</span></div>
                     <br>
                  </div>`;
 
                 previousSearch.textContent = "";
 
                 let anchor = document.createElement("a");
-                anchor.textContent = currentArea;
-            
-                listItem.textContent =  ` - ${feelsLike}°F`
-                listItem.prepend(anchor);
-                ul.append(listItem);
+                anchor.setAttribute("href", "#")
+
+                anchor.textContent = data.nearest_area[0].areaName[0].value;
+                anchor.addEventListener("click", (e)=>{
+                    e.preventDefault();
+                    console.log(e.target.textContent)
+                    updateWeather(e.target.textContent)
+                    
+                })
+                
+                listItem.textContent =  ` - ${data.current_condition[0].FeelsLikeF}°F`
+                if (!searches.includes(anchor.textContent) && searches.length < 15){
+                    searches.push(anchor.textContent)
+
+                    listItem.prepend(anchor);
+                    ul.append(listItem);
+                    console.log(searches)
+                    
+                }
+                
 
 
             }).catch((err)=>{
@@ -110,11 +107,62 @@ form.addEventListener("submit", (e)=>{
     }
                 
 
-                // anchor.addEventListener("click", (e)=>{
-                //     e.preventDefault();
-
-                // })
-
 });
 
+function updateWeather(city){
+    fetch(`https://wttr.in/${city}?format=j1`)
+    .then((res)=> {
+        return res.json();
+    }).then((data)=> {
 
+        currentLocation.innerHTML = `
+                <div id ="current-location" class="display"> </div>
+                <h2>${data.nearest_area[0].areaName[0].value}</h2>
+                <div><strong>${data.current_condition[0].localObsDateTime}<strong><div>
+                <br>
+                <div><strong>Area: </strong><span id="area">${data.nearest_area[0].areaName[0].value}</span></div>
+                <br>
+                <div><strong>Region: </strong><span id="region"> ${data.nearest_area[0].region[0].value}</span></div>
+                <br>
+                <div><strong>Country: </strong><span id="country">${data.nearest_area[0].country[0].value}</span></div>
+                <br>
+                <div><strong>Currently: </strong><span id="current">Feels like ${data.current_condition[0].FeelsLikeF}°F</span></div>
+                <br>`;
+
+                let forecast = document.querySelector("#forecast");
+
+                forecast.innerHTML =`
+                <div id = "today">
+                    <h3>Today</h3>
+                    <div><strong>Average Temp: </strong><span>${data.weather[0].avgtempF} °F</span></div>
+                    <br>
+                    <div><strong>Max Temp: </strong><span> ${data.weather[0].maxtempF} °F</span></div>
+                    <br>
+                    <div><strong>Min Temp: </strong><span> ${data.weather[0].mintempF} °F</span></div>
+                <br>      
+                </div>
+                <div id ="tomorrow">
+                    <h3>Tomorrow</h3>
+                    <div><strong>Average Temp:</strong><span> ${data.weather[1].avgtempF}°F</span></div>
+                    <br>
+                    <div><strong>Max Temp:</strong><span> ${data.weather[1].maxtempF}°F</span></div>
+                    <br>
+                    <div><strong>Min Temp:</strong><span> ${data.weather[1].mintempF}°F</span></div>
+                    <br>          
+                 </div>
+                 <div id="day-after">
+                    <h3>Day After Tomorrow</h3>
+                    <div><strong>Average Temp:</strong><span> ${data.weather[2].avgtempF}°F</span></div>
+                    <br>
+                    <div><strong>Max Temp:</strong><span> ${data.weather[2].maxtempF}°F</span></div>
+                    <br>
+                    <div><strong>Min Temp:</strong><span> ${data.weather[2].mintempF}°F</span></div>
+                    <br>
+                 </div>`;
+
+
+            }).catch((err)=>{
+                throw err;
+            });
+                
+}
