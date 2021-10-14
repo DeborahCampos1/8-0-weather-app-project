@@ -1,29 +1,79 @@
-/* #main{
-    display: grid;
+#main{
+    background-image: linear-gradient(purple, orange, tan);
+    background-image: url(./assets/orange-cloud.jpeg);
     
-} */
-
+}
 #content{
     display: grid;
     grid-template-areas: 
+    "nav nav nav nav nav"
     ". header header header ."
     ". current current previous ."
-    ". forcast forcast . .";
+    ". forecast forecast . ."
+    "footer footer footer footer footer";
     grid-gap: 5px;
     width: 75%;
     margin: 0 auto;
 }
-
+ #nav{
+  
+    grid-area: nav;
+    text-align: center;
+    padding-bottom: 20px;
+    background-image: url(./assets/orange-cloud.jpeg);
+    
+} 
+#nav span{
+    grid-gap: 5px;
+    margin: 5px;
+    padding: 10px;
+}
 
 #header{
     display: grid;
     text-align: center;
     grid-area: header;
-    border: 2px solid black;
+    border: 2px solid rgb(112, 176, 196);
     padding: 10px 0px 40px 0px;
     margin: 10px;
-    background-color: cadetblue;
+    background-image: linear-gradient(purple, orange, tan);;
 }
+#footer{
+    grid-area: footer;
+    border: 2px solid black;
+}
+#logo{
+    grid-area: logo;
+}
+.logo img{
+    width: 100px;
+    padding-top: 15px;
+
+}
+#footer-logo{
+    text-align: center;
+}
+#footer-logo img{
+    text-align: center;
+    width: 250px;
+    padding: 10px;
+    }
+#hyperlinks{
+    text-align: center;
+}
+#maps{
+    grid-area: maps;
+}
+#news{
+    grid-area: news;
+}
+#severe{
+    grid-area: severe;
+}
+#more{
+    grid-area: more;
+}
+
 #error-message{
     color: red;
     font-weight: 700;
@@ -36,7 +86,7 @@
     padding:10px;
     grid-area: current;
     text-align: center;
-    background-color: rgb(223, 217, 217);
+    background-image: linear-gradient(tan, orange,purple);
 }
 #previous-searches{
    
@@ -44,6 +94,8 @@
     padding: 15px;
     grid-area: previous;
     text-align: left;
+    background-image: linear-gradient(tan, orange,purple);
+
 }
 #no-search-yet{
     text-align: center;
@@ -55,8 +107,10 @@
     "today tomorrow dayafter";
     margin: 10px;
     padding: 0px;
-    grid-area: forcast;
+    grid-area: forecast;
     text-align: center;
+    background-image: linear-gradient(tan, orange,purple);
+
 }
 #today{
     grid-area: today;
