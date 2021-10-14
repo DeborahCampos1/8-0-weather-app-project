@@ -1,16 +1,17 @@
 #main{
     background-image: linear-gradient(purple, orange, tan);
     background-image: url(./assets/orange-cloud.jpeg);
+    margin: 10px;
     
 }
 #content{
     display: grid;
     grid-template-areas: 
-    "nav nav nav nav nav"
+    ". nav nav nav ."
     ". header header header ."
     ". current current previous ."
     ". forecast forecast . ."
-    "footer footer footer footer footer";
+    ". footer footer footer .";
     grid-gap: 5px;
     width: 75%;
     margin: 0 auto;
@@ -20,6 +21,8 @@
     grid-area: nav;
     text-align: center;
     padding-bottom: 20px;
+    color: rgb(62, 126, 133);
+    font-weight: 600;
     background-image: url(./assets/orange-cloud.jpeg);
     
 } 
@@ -52,6 +55,7 @@
 }
 #footer-logo{
     text-align: center;
+    padding: 5px;
 }
 #footer-logo img{
     text-align: center;
@@ -60,6 +64,8 @@
     }
 #hyperlinks{
     text-align: center;
+    padding: 10px;
+    color: seashell;
 }
 #maps{
     grid-area: maps;
