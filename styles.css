@@ -2,6 +2,7 @@
     background-image: linear-gradient(purple, orange, tan);
     background-image: url(./assets/orange-cloud.jpeg);
     margin: 10px;
+
     
 }
 #content{
@@ -17,9 +18,10 @@
     margin: 0 auto;
 }
  #nav{
-  
+    display: grid;
+    grid-template-columns: 1fr;
+    display: inline-block;
     grid-area: nav;
-    text-align: center;
     padding-bottom: 20px;
     color: rgb(62, 126, 133);
     font-weight: 600;
@@ -30,20 +32,23 @@
     grid-gap: 5px;
     margin: 5px;
     padding: 10px;
+    background-image: url(./assets/orange-cloud.jpeg);
 }
 
 #header{
     display: grid;
     text-align: center;
     grid-area: header;
-    border: 2px solid rgb(112, 176, 196);
-    padding: 10px 0px 40px 0px;
+    border: 3px solid rgb(112, 176, 196);
+    padding: 40px;
     margin: 10px;
     background-image: linear-gradient(purple, orange, tan);;
 }
 #footer{
     grid-area: footer;
-    border: 2px solid black;
+    border: 3px solid rgb(112, 176, 196);
+
+    background-image: url(./assets/orange-cloud.jpeg);
 }
 #logo{
     grid-area: logo;
@@ -97,20 +102,25 @@
 #previous-searches{
    
     margin: 10px;
-    padding: 15px;
+    padding: 25px;
     grid-area: previous;
     text-align: left;
     background-image: linear-gradient(tan, orange,purple);
+    border: 1px solid rgb(63, 226, 218);
+
 
 }
 #no-search-yet{
     text-align: center;
+    background-image: url(./assets/orange-cloud.jpeg);
 
 }
 #forecast{
     display:grid;
     grid-template-areas: 
     "today tomorrow dayafter";
+    border: 1px solid rgb(63, 226, 218);
+
     margin: 10px;
     padding: 0px;
     grid-area: forecast;
@@ -127,3 +137,4 @@
 #day-after{
     grid-area: dayafter;
 }
+
