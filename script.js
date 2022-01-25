@@ -6,19 +6,14 @@ form.addEventListener("submit", (e)=>{
 
     let chooseLocation = e.target["location"].value;
     let errorMsg = document.querySelector("#error-message")
-    
 
     if(!chooseLocation){
         errorMsg.textContent = "Please enter a location"
-        
     } else {
         errorMsg.textContent = "";
         e.target["location"].value = "";
-
-        updateWeather(chooseLocation)
+        updateWeather(chooseLocation);
     }
-                
-
 });
 
 
@@ -101,7 +96,6 @@ function updateWeather(city){
                     }
             }).catch((err)=>{
                 currentLocation.textContent = `Location not found`
-                throw err;
-                
+                throw err; 
             });
         }
